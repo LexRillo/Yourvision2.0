@@ -38,17 +38,30 @@ eclipse {
 // In this section you declare the dependencies for your production and test code
 dependencies {
 	// The production code uses the SLF4J logging API at compile time
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version:'1.5.1.RELEASE'
+	compile group: 'org.jboss.aerogear', name: 'aerogear-otp-java', version:'1.0.0'
+	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version:'2.1.3.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version:'1.5.1.RELEASE'
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'1.5.1.RELEASE'
+	compile group: 'mysql', name: 'mysql-connector-java', version:'5.1.40'
+	compile group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version:'1.5.1.RELEASE'
+	runtime group: 'javax.servlet', name: 'jstl', version:'1.2'
+	compile group: 'commons-dbcp', name: 'commons-dbcp', version:'1.4'
+	
 	compile 'org.slf4j:slf4j-api:1.7.21'
+	
 	compile("org.springframework.boot:spring-boot-starter-mail")
 	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+	testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}"){
+		exclude(module: 'commons-logging')
+    }
 	// JSP
 	compile("org.apache.tomcat.embed:tomcat-embed-jasper:9.0.0.M11")
 	compile("javax.servlet:jstl:1.2")
-  //jQuery webjar
-  compile("org.webjars:jquery:3.2.0")
-  //Font Awesome webjar
-  compile("org.webjars:font-awesome:4.7.0")
+	//jQuery webjar
+	compile("org.webjars:jquery:3.2.0")
+	//Font Awesome webjar
+	compile("org.webjars:font-awesome:4.7.0")
 	// cucumber
 	testCompile("info.cukes:cucumber-spring:1.2.5")
 	testCompile("info.cukes:cucumber-java:1.2.5")
