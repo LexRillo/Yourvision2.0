@@ -12,6 +12,8 @@ public class User {
     private String password;
     private String passwordConfirm;
     private Set<Role> roles;
+    private String email;
+    private String facode;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -46,6 +48,22 @@ public class User {
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
+    }
+    
+    public String getEmail(){
+    	return email;
+    }
+    
+    public void setEmail(String email){
+    	this.email = email;
+    }
+    
+    public String getfaCode(){
+    	return facode;
+    }
+    
+    public void setfaCode(String facode){ 
+    	this.facode = facode; 
     }
 
     @ManyToMany

@@ -4,6 +4,7 @@ import com.hellokoding.account.model.User;
 import com.hellokoding.account.service.SecurityService;
 import com.hellokoding.account.service.UserService;
 import com.hellokoding.account.validator.UserValidator;
+import com.hellokoding.account.model.GoogleAuth;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +23,14 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+    
+    private GoogleAuth totp;
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
-
+    	User user = new User();
+        model.addAttribute("userForm", user);
+        user.setfaCode(totp.getRandomSecretKey());
         return "registration";
     }
 
@@ -47,6 +51,10 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
+//    	String sk = totp.getRandomSecretKey();
+//    	model.addAttribute("secretk", sk);
+//    	model.addAttribute("result", totp.getTOTPCode(sk))
+    	
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
@@ -58,6 +66,7 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/profile"}, method = RequestMethod.GET)
     public String profile(Model model) {
+    	//model.addAttribute("secretK", user.getfaCode());
         return "profile";
     }
 }

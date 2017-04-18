@@ -10,6 +10,6 @@ com/hellokoding/account/service/UserDetailsServiceImpl.class
 com/hellokoding/account/model/Course.class
 com/hellokoding/account/web/UserController.class
 com/hellokoding/account/service/SecurityService.class
-com/hellokoding/account/model/Lecture.class
 com/hellokoding/account/web/CourseController.class
+com/hellokoding/account/model/Lecture.class
 com/hellokoding/account/service/SecurityServiceImpl.class
