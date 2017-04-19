@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Controller
 public class UserController {
@@ -50,12 +52,22 @@ public class UserController {
 
         return "redirect:/profile";
     }
+    
+    @RequestMapping(value = "/qrcodepage", method = RequestMethod.GET)
+    public String qrcode(Model model){
+//    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//    	String name = auth.getName();
+//    	model.addAttribute("username", name);
+//    	String code = auth.getfaCode();
+//    	model.addAttribute("secretk", code);
+    	return "qrcodepage";
+    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
 //    	String sk = totp.getRandomSecretKey();
 //    	model.addAttribute("secretk", sk);
-//    	model.addAttribute("result", totp.getTOTPCode(sk))
+//    	model.addAttribute("result", totp.getTOTPCode(sk));
     	
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
@@ -69,6 +81,14 @@ public class UserController {
     @RequestMapping(value = {"/", "/profile"}, method = RequestMethod.GET)
     public String profile(Model model) {
     	//model.addAttribute("secretK", user.getfaCode());
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	String name = auth.getName();
+    	//System.out.println("THISCODE " + userService.findByUsername(name).getfaCode());
+    	String facode = userService.findByUsername(name).getfaCode();
+    	String barcode = totp.getGoogleAuthenticatorBarCode(facode, name);
+    	model.addAttribute("username", name);
+    	model.addAttribute("code", facode);
+    	model.addAttribute("qrcode", barcode);
         return "profile";
     }
 }

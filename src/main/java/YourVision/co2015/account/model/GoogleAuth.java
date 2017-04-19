@@ -38,9 +38,10 @@ public class GoogleAuth {
      *
      * @see https://github.com/google/google-authenticator/wiki/Key-Uri-Format
      */
-    public static String getGoogleAuthenticatorBarCode(String secretKey, String account, String issuer) {
+    public static String getGoogleAuthenticatorBarCode(String secretKey, String account) {
         String normalizedBase32Key = secretKey.replace(" ", "").toUpperCase();
         try {
+        	String issuer = "yourvision";
             return "otpauth://totp/"
                 + URLEncoder.encode(issuer + ":" + account, "UTF-8").replace("+", "%20")
                 + "?secret=" + URLEncoder.encode(normalizedBase32Key, "UTF-8").replace("+", "%20")
@@ -74,7 +75,7 @@ public class GoogleAuth {
         System.setProperty("java.awt.headless", "true");
 
         String secretKey = getRandomSecretKey();
-        String barCode = getGoogleAuthenticatorBarCode(secretKey, "test@example.com", "Example Company");
+        String barCode = getGoogleAuthenticatorBarCode(secretKey, "test@example.com");
         String tmpDir = System.getProperty("java.io.tmpdir");
         if (!tmpDir.endsWith(File.separator)) {
             tmpDir += File.separator;
