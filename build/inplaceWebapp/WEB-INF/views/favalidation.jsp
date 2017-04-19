@@ -30,8 +30,7 @@
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-
-        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
+        <h2>Validate your login ${pageContext.request.userPrincipal.name}</h2>
         
 		<li>Scan this QR code with <a href="https://support.google.com/accounts/answer/1066447?hl=en" target="_blank">Google Authenticator</a> app in order receive verification codes</li>  
                 <div>
