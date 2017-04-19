@@ -29,8 +29,9 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
     	User user = new User();
+    	
         model.addAttribute("userForm", user);
-        user.setfaCode(totp.getRandomSecretKey());
+        
         return "registration";
     }
 
@@ -41,7 +42,8 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-
+        
+        userForm.setfaCode(totp.getRandomSecretKey());
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
