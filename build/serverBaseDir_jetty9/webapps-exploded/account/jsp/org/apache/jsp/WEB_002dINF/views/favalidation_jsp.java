@@ -12,7 +12,6 @@ public final class favalidation_jsp extends org.apache.jasper.runtime.HttpJspBas
   private static java.util.List<String> _jspx_dependants;
 
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_set_var_value_nobody;
-  private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_spring_bind_path;
   private org.apache.jasper.runtime.TagHandlerPool _jspx_tagPool_c_if_test;
 
   private org.glassfish.jsp.api.ResourceInjector _jspx_resourceInjector;
@@ -23,13 +22,11 @@ public final class favalidation_jsp extends org.apache.jasper.runtime.HttpJspBas
 
   public void _jspInit() {
     _jspx_tagPool_c_set_var_value_nobody = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
-    _jspx_tagPool_spring_bind_path = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
     _jspx_tagPool_c_if_test = org.apache.jasper.runtime.TagHandlerPool.getTagHandlerPool(getServletConfig());
   }
 
   public void _jspDestroy() {
     _jspx_tagPool_c_set_var_value_nobody.release();
-    _jspx_tagPool_spring_bind_path.release();
     _jspx_tagPool_c_if_test.release();
   }
 
@@ -93,38 +90,18 @@ public final class favalidation_jsp extends org.apache.jasper.runtime.HttpJspBas
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
       out.write("\n");
-      out.write("    <form:form method=\"POST\" modelAttribute=\"code\">\n");
-      out.write("    \t");
-      //  spring:bind
-      org.springframework.web.servlet.tags.BindTag _jspx_th_spring_bind_0 = (org.springframework.web.servlet.tags.BindTag) _jspx_tagPool_spring_bind_path.get(org.springframework.web.servlet.tags.BindTag.class);
-      _jspx_th_spring_bind_0.setPageContext(_jspx_page_context);
-      _jspx_th_spring_bind_0.setParent(null);
-      _jspx_th_spring_bind_0.setPath("code");
-      int[] _jspx_push_body_count_spring_bind_0 = new int[] { 0 };
-      try {
-        int _jspx_eval_spring_bind_0 = _jspx_th_spring_bind_0.doStartTag();
-        if (_jspx_eval_spring_bind_0 != javax.servlet.jsp.tagext.Tag.SKIP_BODY) {
-          do {
-            out.write("\n");
-            out.write("                <form:input type=\"text\" path=\"code\" class=\"form-control\" placeholder=\"Validate code\" autofocus=\"true\"></form:input>\n");
-            out.write("    \t");
-            int evalDoAfterBody = _jspx_th_spring_bind_0.doAfterBody();
-            if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
-              break;
-          } while (true);
-        }
-        if (_jspx_th_spring_bind_0.doEndTag() == javax.servlet.jsp.tagext.Tag.SKIP_PAGE) {
-          return;
-        }
-      } catch (Throwable _jspx_exception) {
-        while (_jspx_push_body_count_spring_bind_0[0]-- > 0)
-          out = _jspx_page_context.popBody();
-        _jspx_th_spring_bind_0.doCatch(_jspx_exception);
-      } finally {
-        _jspx_th_spring_bind_0.doFinally();
-        _jspx_tagPool_spring_bind_path.reuse(_jspx_th_spring_bind_0);
-      }
-      out.write("\n");
+      out.write("    \n");
+      out.write("    <form method=\"POST\" action=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("/favalidation\" class=\"form-signin\">\n");
+      out.write("        <input type=\"hidden\" th:name=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_csrf.parameterName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\" th:value=\"");
+      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_csrf.token}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+      out.write("\"/>\n");
+      out.write("    \t<input name=\"code\" type=\"text\" class=\"form-control\" placeholder=\"Validation Code\"/>\n");
+      out.write("    \t<button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Check</button>\n");
+      out.write("    \t\n");
       out.write("    </form:form>\n");
       out.write("</div>\n");
       out.write("\n");
@@ -190,10 +167,9 @@ public final class favalidation_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_csrf.token}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\"/>\n");
         out.write("        </form>\n");
-        out.write("\n");
-        out.write("        <h2>Welcome ");
+        out.write("        <h2>Validate your login ");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.userPrincipal.name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write(" | <a onclick=\"document.forms['logoutForm'].submit()\">Logout</a></h2>\n");
+        out.write("</h2>\n");
         out.write("        \n");
         out.write("\t\t<li>Scan this QR code with <a href=\"https://support.google.com/accounts/answer/1066447?hl=en\" target=\"_blank\">Google Authenticator</a> app in order receive verification codes</li>  \n");
         out.write("                <div>\n");

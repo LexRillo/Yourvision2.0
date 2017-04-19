@@ -104,8 +104,13 @@ public class UserController {
         return "redirect:/profile";
     }
     
-    @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) {
         return "profile";
     }
+    
+//    @RequestMapping(value = "/")
+//    public String index() {
+//        return "index";
+//    }
 }
