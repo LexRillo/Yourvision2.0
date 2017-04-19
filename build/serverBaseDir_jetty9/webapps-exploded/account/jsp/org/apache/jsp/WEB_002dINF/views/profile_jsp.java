@@ -91,7 +91,6 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
         return;
       out.write("\n");
       out.write("</div>\n");
-      out.write("\n");
       out.write("<!-- /container -->\n");
       out.write("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\"></script>\n");
       out.write("<script src=\"");
@@ -159,7 +158,12 @@ public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
         out.write(" | <a onclick=\"document.forms['logoutForm'].submit()\">Logout</a></h2>\n");
         out.write("        <li><a href=\"/courses/createCourse\">Create a new course</a></li>\n");
         out.write("        <!-- <li><a href=\"/courses/subscribedCourses\">View my courses</a></li> -->\n");
-        out.write("\n");
+        out.write("\t\t<li>Scan this demo QR code with <a href=\"https://support.google.com/accounts/answer/1066447?hl=en\" target=\"_blank\">Google Authenticator</a> app in order receive verification codes needed in the second step.</li>\n");
+        out.write("                <div>\n");
+        out.write("                    <img src=\"http://chart.googleapis.com/chart?chs=200x200&amp;chld=M%7C0&amp;cht=qr&amp;chl=");
+        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${qrcode}", java.lang.String.class, (PageContext)_jspx_page_context, null));
+        out.write("\" />\n");
+        out.write("                </div>\n");
         out.write("    ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)

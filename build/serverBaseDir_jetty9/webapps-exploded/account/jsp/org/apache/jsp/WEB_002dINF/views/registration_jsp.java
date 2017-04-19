@@ -516,7 +516,7 @@ public final class registration_jsp extends org.apache.jasper.runtime.HttpJspBas
     org.springframework.web.servlet.tags.form.InputTag _jspx_th_form_input_3 = (org.springframework.web.servlet.tags.form.InputTag) _jspx_tagPool_form_input_type_placeholder_path_class_nobody.get(org.springframework.web.servlet.tags.form.InputTag.class);
     _jspx_th_form_input_3.setPageContext(_jspx_page_context);
     _jspx_th_form_input_3.setParent((javax.servlet.jsp.tagext.Tag) _jspx_th_spring_bind_3);
-    _jspx_th_form_input_3.setDynamicAttribute(null, "type", new String("text"));
+    _jspx_th_form_input_3.setDynamicAttribute(null, "type", new String("email"));
     _jspx_th_form_input_3.setPath("email");
     _jspx_th_form_input_3.setDynamicAttribute(null, "class", new String("form-control"));
     _jspx_th_form_input_3.setDynamicAttribute(null, "placeholder", new String("Email"));
