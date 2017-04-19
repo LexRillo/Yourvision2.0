@@ -16,7 +16,7 @@ public class CourseController {
     @Autowired
     private CourseRepository courserepo;
 
-    @RequestMapping(value = "/createCourse")
+    @RequestMapping(value = "/createCourse", method = RequestMethod.GET)
     public String createCourse(Model model) {
         return "newcourse";
     }

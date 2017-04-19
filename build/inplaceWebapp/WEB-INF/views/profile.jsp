@@ -34,10 +34,6 @@
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
         <li><a href="/courses/createCourse">Create a new course</a></li>
         <!-- <li><a href="/courses/subscribedCourses">View my courses</a></li> -->
-		<li>Scan this demo QR code with <a href="https://support.google.com/accounts/answer/1066447?hl=en" target="_blank">Google Authenticator</a> app in order receive verification codes needed in the second step.</li>
-                <div>
-                    <img src="http://chart.googleapis.com/chart?chs=200x200&amp;chld=M%7C0&amp;cht=qr&amp;chl=${qrcode}" />
-                </div>
     </c:if>
 </div>
 <!-- /container -->

@@ -30,17 +30,25 @@
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        <h2>Validate your login ${pageContext.request.userPrincipal.name}</h2>
+
+        <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
         
 		<li>Scan this QR code with <a href="https://support.google.com/accounts/answer/1066447?hl=en" target="_blank">Google Authenticator</a> app in order receive verification codes</li>  
                 <div>
                     <img src="http://chart.googleapis.com/chart?chs=200x200&amp;chld=M%7C0&amp;cht=qr&amp;chl=${qrcode}" />
-                </div>
+                </div> 
         <li>Then use the 6 digit code from the app to authenticate</li>
-        <li><a href="/profile">Check</a></li>
-        <li><a onclick="document.forms['logoutForm'].submit()">Logout</a></li>
     </c:if>
+    
+    <form method="POST" action="${contextPath}/favalidation" class="form-signin">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    	<input name="code" type="text" class="form-control" placeholder="Validation Code"/>
+    	<button class="btn btn-lg btn-primary btn-block" type="submit">Check</button>
+    	
+    </form:form>
 </div>
+
+
 <!-- /container -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="${contextPath}/resources/js/bootstrap.min.js"></script>

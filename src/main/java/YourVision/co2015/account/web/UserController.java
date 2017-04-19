@@ -80,16 +80,28 @@ public class UserController {
 
     @RequestMapping(value = {"/", "/favalidation"}, method = RequestMethod.GET)
     public String favalidation(Model model) {
-    	//model.addAttribute("secretK", user.getfaCode());
-    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	String name = auth.getName();
-    	//System.out.println("THISCODE " + userService.findByUsername(name).getfaCode());
+       	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	String name = auth.getName();    	
     	String facode = userService.findByUsername(name).getfaCode();
-    	String barcode = totp.getGoogleAuthenticatorBarCode(facode, name);
-    	model.addAttribute("username", name);
-    	model.addAttribute("code", facode);
-    	model.addAttribute("qrcode", barcode);
+    	
+    	model.addAttribute("qrcode", totp.getGoogleAuthenticatorBarCode(facode, name));
         return "favalidation";
+    }
+    
+    @RequestMapping(value = "/favalidation", method = RequestMethod.POST)
+    public String favalidation(@ModelAttribute("code") String code, Model model) {
+    	System.out.println("I GET HERE");
+    	code = code.replace(" ", "");
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	String name = auth.getName();    	
+    	String facode = userService.findByUsername(name).getfaCode();
+        if (!code.equals(totp.getTOTPCode(facode))) {
+        	System.out.println("Wrong cider");
+        	model.addAttribute("wrongvalidation", "Wrong code. Try again");
+            return "favalidation";
+        }
+        
+        return "redirect:/profile";
     }
     
     @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)
