@@ -3,7 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'war'
 apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
 
-group = 'com.hellokoding'
+group = 'YourVision.co2015'
 version = '1.0-SNAPSHOT'
 
 description = """Account Registration Webapp"""
