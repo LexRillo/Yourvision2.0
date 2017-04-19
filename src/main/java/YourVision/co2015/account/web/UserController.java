@@ -50,7 +50,7 @@ public class UserController {
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
-        return "redirect:/profile";
+        return "redirect:/favalidation";
     }
     
     @RequestMapping(value = "/qrcodepage", method = RequestMethod.GET)
@@ -78,8 +78,8 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/profile"}, method = RequestMethod.GET)
-    public String profile(Model model) {
+    @RequestMapping(value = {"/", "/favalidation"}, method = RequestMethod.GET)
+    public String favalidation(Model model) {
     	//model.addAttribute("secretK", user.getfaCode());
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	String name = auth.getName();
@@ -89,6 +89,11 @@ public class UserController {
     	model.addAttribute("username", name);
     	model.addAttribute("code", facode);
     	model.addAttribute("qrcode", barcode);
+        return "favalidation";
+    }
+    
+    @RequestMapping(value = {"/profile"}, method = RequestMethod.GET)
+    public String profile(Model model) {
         return "profile";
     }
 }
