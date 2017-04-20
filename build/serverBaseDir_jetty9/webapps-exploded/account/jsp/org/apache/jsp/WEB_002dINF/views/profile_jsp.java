@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
 
-public final class favalidation_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class profile_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -90,26 +90,7 @@ public final class favalidation_jsp extends org.apache.jasper.runtime.HttpJspBas
       if (_jspx_meth_c_if_0(_jspx_page_context))
         return;
       out.write("\n");
-      out.write("    \n");
-      out.write("    <form method=\"POST\" action=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${contextPath}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("/favalidation?");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_csrf.parameterName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write('=');
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_csrf.token}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\" class=\"form-signin\">\n");
-      out.write("    \t<input name=\"code\" type=\"text\" class=\"form-control\" placeholder=\"Validation Code\"/>\n");
-      out.write("    \t <input type=\"hidden\" th:name=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_csrf.parameterName}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\" th:value=\"");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_csrf.token}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("\"/>\n");
-      out.write("    \t<button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\">Check</button>\n");
-      out.write("    \t\n");
-      out.write("    </form:form>\n");
       out.write("</div>\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!-- /container -->\n");
       out.write("<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js\"></script>\n");
       out.write("<script src=\"");
@@ -171,17 +152,12 @@ public final class favalidation_jsp extends org.apache.jasper.runtime.HttpJspBas
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${_csrf.token}", java.lang.String.class, (PageContext)_jspx_page_context, null));
         out.write("\"/>\n");
         out.write("        </form>\n");
-        out.write("        <h2>Validate your login ");
+        out.write("\n");
+        out.write("        <h2>Welcome ");
         out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${pageContext.request.userPrincipal.name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("| <a onclick=\"document.forms['logoutForm'].submit()\">Logout</a></h2>\n");
-        out.write("        \n");
-        out.write("\t\t<li>Scan this QR code with <a href=\"https://support.google.com/accounts/answer/1066447?hl=en\" target=\"_blank\">Google Authenticator</a> app in order receive verification codes</li>  \n");
-        out.write("                <div>\n");
-        out.write("                    <img src=\"http://chart.googleapis.com/chart?chs=200x200&amp;chld=M%7C0&amp;cht=qr&amp;chl=");
-        out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${qrcode}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-        out.write("\" />\n");
-        out.write("                </div> \n");
-        out.write("        <li>Then use the 6 digit code from the app to authenticate</li>\n");
+        out.write(" | <a onclick=\"document.forms['logoutForm'].submit()\">Logout</a></h2>\n");
+        out.write("        <li><a href=\"/courses/createCourse\">Create a new course</a></li>\n");
+        out.write("        <!-- <li><a href=\"/courses/subscribedCourses\">View my courses</a></li> -->\n");
         out.write("    ");
         int evalDoAfterBody = _jspx_th_c_if_0.doAfterBody();
         if (evalDoAfterBody != javax.servlet.jsp.tagext.BodyTag.EVAL_BODY_AGAIN)
