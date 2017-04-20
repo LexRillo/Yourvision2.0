@@ -5,6 +5,9 @@ import YourVision.co2015.account.service.SecurityService;
 import YourVision.co2015.account.service.UserService;
 import YourVision.co2015.account.validator.UserValidator;
 import YourVision.co2015.account.model.GoogleAuth;
+import YourVision.co2015.account.model.Course;
+import YourVision.co2015.account.repository.CourseRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,8 +29,12 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
     
+    @Autowired
+    private CourseRepository courserepo;
+    
     private GoogleAuth totp;
 
+    //--------registration
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
     	User user = new User();
@@ -53,6 +60,8 @@ public class UserController {
         return "redirect:/favalidation";
     }
 
+    
+    //-----login
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         if (error != null)
@@ -64,6 +73,7 @@ public class UserController {
         return "login";
     }
 
+    //----totp
     @RequestMapping(value = {"/", "/favalidation"}, method = RequestMethod.GET)
     public String favalidation(Model model) {
        	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -88,11 +98,25 @@ public class UserController {
         return "redirect:/profile";
     }
     
+    
+    //----profile
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(Model model) {
         return "profile";
     }
     
+    
+    //----courses
+    @RequestMapping(value = "/createCourse")
+    public String createCourse(Model model) {
+        return "newcourse";
+    }
+    
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public String productMaster(@ModelAttribute("course") Course course, Model model) {
+	    courserepo.save(course);
+	    return "courselist";
+    }
 //    @RequestMapping(value = "/")
 //    public String index() {
 //        return "index";
