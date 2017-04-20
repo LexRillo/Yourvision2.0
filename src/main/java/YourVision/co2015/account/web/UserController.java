@@ -52,23 +52,9 @@ public class UserController {
 
         return "redirect:/favalidation";
     }
-    
-    @RequestMapping(value = "/qrcodepage", method = RequestMethod.GET)
-    public String qrcode(Model model){
-//    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//    	String name = auth.getName();
-//    	model.addAttribute("username", name);
-//    	String code = auth.getfaCode();
-//    	model.addAttribute("secretk", code);
-    	return "qrcodepage";
-    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
-//    	String sk = totp.getRandomSecretKey();
-//    	model.addAttribute("secretk", sk);
-//    	model.addAttribute("result", totp.getTOTPCode(sk));
-    	
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
 
@@ -90,13 +76,11 @@ public class UserController {
     
     @RequestMapping(value = "/favalidation", method = RequestMethod.POST)
     public String favalidation(@ModelAttribute("code") String code, Model model) {
-    	System.out.println("I GET HERE");
     	code = code.replace(" ", "");
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	String name = auth.getName();    	
     	String facode = userService.findByUsername(name).getfaCode();
         if (!code.equals(totp.getTOTPCode(facode))) {
-        	System.out.println("Wrong cider");
         	model.addAttribute("wrongvalidation", "Wrong code. Try again");
             return "favalidation";
         }

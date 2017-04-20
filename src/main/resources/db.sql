@@ -16,7 +16,9 @@ CREATE TABLE `role` (
 --
 
 LOCK TABLES `role` WRITE;
-INSERT INTO `role` VALUES (1,'ROLE_USER');
+INSERT INTO `role` VALUES (1,'ROLE_LEARNER');
+INSERT INTO `role` VALUES (2,'ROLE_LECTURER');
+INSERT INTO `role` VALUES (3,'ROLE_ADMINISTRATOR');
 UNLOCK TABLES;
 --
 -- Table structure for table `course`

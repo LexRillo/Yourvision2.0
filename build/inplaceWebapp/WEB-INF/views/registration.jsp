@@ -62,6 +62,19 @@
             </div>
         </spring:bind>
         
+        <spring:bind path="roles">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+	            <form:select path="" name="roleName">
+	            <form:option value="ROLE_LEARNER" label="Learner"/>
+	            <!--
+	            <form:option value="ROLE_LEARNER" label="Learner"/>
+	            <form:option value="ROLE_LECTURER" label="Lecturer"/>
+	            <form:option value="ROLE_ADMINISTRATOR" label="Administrator"/>
+	            -->
+	            </form:select>
+            </div>
+        </spring:bind>
+        
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form:form>
 
