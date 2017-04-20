@@ -30,7 +30,7 @@
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        <h2>Validate your login ${pageContext.request.userPrincipal.name}</h2>
+        <h2>Validate your login ${pageContext.request.userPrincipal.name}| <a onclick="document.forms['logoutForm'].submit()">Logout</a></h2>
         
 		<li>Scan this QR code with <a href="https://support.google.com/accounts/answer/1066447?hl=en" target="_blank">Google Authenticator</a> app in order receive verification codes</li>  
                 <div>
@@ -39,9 +39,9 @@
         <li>Then use the 6 digit code from the app to authenticate</li>
     </c:if>
     
-    <form method="POST" action="${contextPath}/favalidation" class="form-signin">
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <form method="POST" action="${contextPath}/favalidation?${_csrf.parameterName}=${_csrf.token}" class="form-signin">
     	<input name="code" type="text" class="form-control" placeholder="Validation Code"/>
+    	 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     	<button class="btn btn-lg btn-primary btn-block" type="submit">Check</button>
     	
     </form:form>
